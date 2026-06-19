@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservoir Submission</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-wrapper">
+            <h1>Reservoir Data Submission</h1>
+            <p class="subtitle">Submit daily reservoir data</p>
+            
+            <form id="reservoirForm" class="form-container">
+                <div class="form-group">
+                    <label for="reservoirName">Reservoir Name *</label>
+                    <select id="reservoirName" name="reservoirName" required>
+                        <option value="">-- Select a Reservoir --</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="waterLevel">Water Level (in meters) *</label>
+                    <input type="number" id="waterLevel" name="waterLevel" placeholder="Enter water level" step="0.01" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="waterStorage">Water Storage (in MCFT) *</label>
+                    <input type="number" id="waterStorage" name="waterStorage" placeholder="Enter water storage" step="0.01" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="inflow">Inflow (in m³/s)</label>
+                    <input type="number" id="inflow" name="inflow" placeholder="Enter inflow" step="0.01">
+                </div>
+
+                <div class="form-group">
+                    <label for="outflow">Outflow (in m³/s)</label>
+                    <input type="number" id="outflow" name="outflow" placeholder="Enter outflow" step="0.01">
+                </div>
+
+                <button type="submit" class="btn-submit">Submit</button>
+            </form>
+            
+            <div id="message" class="message"></div>
+
+<!--             <p style="text-align:center; margin-top:20px;"> -->
+<!--                 <a href="/overview" style="color:#667eea; font-weight:600; text-decoration:none;">View today's overview &rarr;</a> -->
+<!--             </p> -->
+        </div>
+    </div>
+    
+    <script src="/js/script.js"></script>
+</body>
+</html>
