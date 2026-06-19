@@ -48,6 +48,7 @@ public class ReservoirController {
     @ResponseBody
     public ResponseEntity<Map<String, Object>> getOverview(@RequestParam(required = false) String date) {
         try {
+            log.info("Overview requested for date={}", parseDate(date));
             return ResponseEntity.ok(googleSheetsService.getOverview(parseDate(date)));
         } catch (GeneralSecurityException | IOException | InterruptedException e) {
             log.error("Failed to build overview", e);
@@ -63,6 +64,7 @@ public class ReservoirController {
     public ResponseEntity<byte[]> downloadToday(@RequestParam(required = false) String date) {
         try {
             LocalDate d = parseDate(date);
+            log.info("Download requested for date={}", d);
             byte[] file = googleSheetsService.downloadSheet(d);
             String fileName = googleSheetsService.getSheetName(d) + ".xlsx";
             HttpHeaders headers = new HttpHeaders();
@@ -84,6 +86,8 @@ public class ReservoirController {
     @ResponseBody
     public ResponseEntity<Map<String, String>> submitReservoir(@RequestBody ReservoirSubmission submission) {
         try {
+            log.info("Submit received: reservoir='{}', level={}, storage={}",
+                    submission.getReservoirName(), submission.getWaterLevel(), submission.getWaterStorage());
             googleSheetsService.submitReservoirData(
                     submission.getReservoirName(),
                     submission.getWaterLevel(),
@@ -92,6 +96,7 @@ public class ReservoirController {
                     submission.getWaterStorage()
             );
 
+            log.info("Submit succeeded for reservoir='{}'", submission.getReservoirName());
             Map<String, String> response = new HashMap<>();
             response.put("status", "success");
             response.put("message", "Reservoir data submitted successfully");
