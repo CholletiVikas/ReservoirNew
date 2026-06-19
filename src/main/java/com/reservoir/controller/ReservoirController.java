@@ -38,10 +38,10 @@ public class ReservoirController {
         return ResponseEntity.ok(googleSheetsService.getReservoirList());
     }
 
-    // Serves the overview page at /overview (forwards to the static HTML).
+    // Serves the overview page at /overview (redirects to the static HTML).
     @GetMapping("/overview")
     public String overview() {
-        return "forward:/overview.html";
+        return "redirect:/overview.html";
     }
 
     @GetMapping("/api/overview")
